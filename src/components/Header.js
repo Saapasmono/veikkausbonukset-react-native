@@ -1,10 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
+import {images} from '../Utils/logo.png';
 
 const Header = () => {
   return (
     <View style={headerContainer}>
-      <Text style={header}>Tähän header</Text>
+      <Image
+        source={require('../Utils/logo.png')}
+      />
     </View>
   )
 }
@@ -12,15 +15,13 @@ const Header = () => {
 const styles = StyleSheet.create({
   headerContainer: {
     display: "flex",
-    marginTop: 55,
+    marginTop: 25,
     alignItems: "center",
-  },
-  header: {
-    fontWeight: "bold",
-    fontSize: 20,
+    borderBottomWidth: 3,
+    borderColor: '#76b729'
   }
 })
 
-const {headerContainer, header} = styles;
+const {headerContainer} = styles;
 
 export default Header;
