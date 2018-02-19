@@ -1,0 +1,1 @@
+export const apiBaseURL = 'https://veikkausbonukset.com/rss/rss_vihjeet.xml';

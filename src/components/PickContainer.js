@@ -1,28 +1,44 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image
-} from 'react-native';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {View} from 'react-native';
 
-const Container = () => {
-  return (
-    <View style={mainContainer}>
-      <Text>Container</Text>
-    </View>
-  )
+import FetchPickData from './../Actions/FetchPickData';
+import Pick from './Pick';
+
+class PickContainer extends Component {
+
+  componentDidMount(){
+    this.props.FetchPickData();
+  }
+
+  renderPicks(){
+    const {pick} = this.props;
+    console.log(pick)
+    return pick.data.map((pick, index) =>
+      <Pick
+        key={index}
+        pick_title={pick.title}
+        pick_link={pick.link}
+        pubDate={pick.pubDate}
+        desc={pick.description}
+      />
+    )
+  }
+
+  render (){
+    return(
+      <View>
+        {this.renderPicks()}
+      </View>
+    )
+  }
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    display: "flex",
-    marginTop: 55,
-    alignItems: "center",
+function mapStateToProps(state) {
+  return {
+    pick: state.pick
   }
-})
 
-const {mainContainer} = styles;
+}
 
-
-export default Container;
+export default connect(mapStateToProps, {FetchPickData})(PickContainer)
